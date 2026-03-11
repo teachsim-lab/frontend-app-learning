@@ -31,14 +31,14 @@ const ProgressTab = () => {
         {/* Main body */}
         <div className="col-12 col-md-8 p-0">
           {!disableProgressGraph && <CourseCompletion />}
-          <ProgressTabCertificateStatusMainBodySlot />
-          <ProgressTabCourseGradeSlot />
+          {/* <ProgressTabCertificateStatusMainBodySlot /> */}
+          {/* <ProgressTabCourseGradeSlot /> */}
           <ProgressTabGradeBreakdownSlot />
         </div>
 
         {/* Side panel */}
         <div className="col-12 col-md-4 p-0 px-md-4">
-          <ProgressTabCertificateStatusSidePanelSlot />
+          {/* <ProgressTabCertificateStatusSidePanelSlot /> */}
           <ProgressTabRelatedLinksSlot />
         </div>
       </div>
