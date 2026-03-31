@@ -9,7 +9,7 @@ import { Button } from '@openedx/paragon';
 import messages from './messages';
 
 const ContentLock = ({
-  courseId, prereqSectionName, prereqId, sequenceTitle,
+  courseId, prereqSectionName, prereqId, sequenceTitle, isUnit = false,
 }) => {
   const intl = useIntl();
   const navigate = useNavigate();
@@ -26,12 +26,19 @@ const ContentLock = ({
       </h3>
       <h4>{intl.formatMessage(messages['learn.contentLock.content.locked'])}</h4>
       <p>
-        {intl.formatMessage(messages['learn.contentLock.complete.prerequisite'], {
-          prereqSectionName,
-        })}
+        {intl.formatMessage(
+          isUnit ? messages['learn.contentLock.complete.unit.prerequisite'] : messages['learn.contentLock.complete.prerequisite'],
+          {
+            prereqSectionName,
+          }
+        )}
       </p>
       <p>
-        <Button variant="primary" onClick={handleClick}>{intl.formatMessage(messages['learn.contentLock.goToSection'])}</Button>
+        <Button variant="primary" onClick={handleClick}>
+          {intl.formatMessage(
+            isUnit ? messages['learn.contentLock.goToUnit'] : messages['learn.contentLock.goToSection']
+          )}
+        </Button>
       </p>
     </>
   );
@@ -41,5 +48,6 @@ ContentLock.propTypes = {
   prereqSectionName: PropTypes.string.isRequired,
   prereqId: PropTypes.string.isRequired,
   sequenceTitle: PropTypes.string.isRequired,
+  isUnit: PropTypes.bool,
 };
 export default ContentLock;

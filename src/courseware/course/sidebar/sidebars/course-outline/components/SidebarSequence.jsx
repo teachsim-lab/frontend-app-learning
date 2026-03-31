@@ -5,6 +5,8 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { Collapsible } from '@openedx/paragon';
 
 import courseOutlineMessages from '@src/course-home/outline-tab/messages';
+import { useModel } from '@src/generic/model-store';
+import { modelKeys } from '../../../../sequence/Unit/constants';
 import { useCourseOutlineSidebar } from '../hooks';
 import CompletionIcon from './CompletionIcon';
 import SidebarUnit from './SidebarUnit';
@@ -30,6 +32,15 @@ const SidebarSequence = ({
   const [open, setOpen] = useState(defaultOpen);
   const { activeSequenceId, units } = useCourseOutlineSidebar();
   const isActiveSequence = id === activeSequenceId;
+
+  let isUnitLocked = (unitId) => {
+    // Get unit data from the same source as the unit view (sequence metadata)
+    const unitFromModel = useModel(modelKeys.units, unitId);
+    if (unitFromModel && unitFromModel.isGated) {
+      return true;
+    }
+    return false;
+  }
 
   const sectionTitle = (
     <>
@@ -68,7 +79,7 @@ const SidebarSequence = ({
               isActive={activeUnitId === unitId}
               activeUnitId={activeUnitId}
               isFirst={index === 0}
-              isLocked={type === UNIT_ICON_TYPES.lock}
+              isLocked={isUnitLocked(unitId) || type === UNIT_ICON_TYPES.lock}
             />
           ))}
         </ol>
