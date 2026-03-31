@@ -30,13 +30,13 @@ const ContentLock = ({
           isUnit ? messages['learn.contentLock.complete.unit.prerequisite'] : messages['learn.contentLock.complete.prerequisite'],
           {
             prereqSectionName,
-          }
+          },
         )}
       </p>
       <p>
         <Button variant="primary" onClick={handleClick}>
           {intl.formatMessage(
-            isUnit ? messages['learn.contentLock.goToUnit'] : messages['learn.contentLock.goToSection']
+            isUnit ? messages['learn.contentLock.goToUnit'] : messages['learn.contentLock.goToSection'],
           )}
         </Button>
       </p>

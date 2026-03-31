@@ -37,7 +37,7 @@ const UnitSuspense = ({
             sequenceTitle={unit.title}
             prereqSectionName={unit.gatedContent.prereqSectionName}
             prereqId={unit.gatedContent.prereqId}
-            isUnit={true}
+            isUnit
           />
         </Suspense>
       )}

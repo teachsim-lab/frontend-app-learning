@@ -1,13 +1,10 @@
 import React from 'react';
 import { useWindowSize } from '@openedx/paragon';
 import { useContextId } from '../../data/hooks';
-import ProgressTabCertificateStatusSidePanelSlot from '../../plugin-slots/ProgressTabCertificateStatusSidePanelSlot';
 
 import CourseCompletion from './course-completion/CourseCompletion';
 import ProgressHeader from './ProgressHeader';
 
-import ProgressTabCertificateStatusMainBodySlot from '../../plugin-slots/ProgressTabCertificateStatusMainBodySlot';
-import ProgressTabCourseGradeSlot from '../../plugin-slots/ProgressTabCourseGradeSlot';
 import ProgressTabGradeBreakdownSlot from '../../plugin-slots/ProgressTabGradeBreakdownSlot';
 import ProgressTabRelatedLinksSlot from '../../plugin-slots/ProgressTabRelatedLinksSlot';
 import { useModel } from '../../generic/model-store';

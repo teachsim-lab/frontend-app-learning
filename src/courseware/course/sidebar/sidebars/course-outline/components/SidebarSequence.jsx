@@ -33,14 +33,14 @@ const SidebarSequence = ({
   const { activeSequenceId, units } = useCourseOutlineSidebar();
   const isActiveSequence = id === activeSequenceId;
 
-  let isUnitLocked = (unitId) => {
+  const isUnitLocked = (unitId) => {
     // Get unit data from the same source as the unit view (sequence metadata)
     const unitFromModel = useModel(modelKeys.units, unitId);
     if (unitFromModel && unitFromModel.isGated) {
       return true;
     }
     return false;
-  }
+  };
 
   const sectionTitle = (
     <>
