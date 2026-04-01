@@ -39,6 +39,15 @@ describe('Content Lock', () => {
     expect(screen.getByText(prereqText)).toBeInTheDocument();
   });
 
+  it('displays unit prerequisite name when isUnit is true', () => {
+    const unitMockData = { ...mockData, isUnit: true };
+    const prereqText = `You must complete the prerequisite unit: '${unitMockData.prereqSectionName}' to access this content.`;
+    render(<ContentLock {...unitMockData} />, { wrapWithRouter: true });
+
+    expect(screen.getByText(prereqText)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Go To Prerequisite Unit' })).toBeInTheDocument();
+  });
+
   it('handles click', () => {
     render(<ContentLock {...mockData} />, { wrapWithRouter: true });
     fireEvent.click(screen.getByRole('button'));

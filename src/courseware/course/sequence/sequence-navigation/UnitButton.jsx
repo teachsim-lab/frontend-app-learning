@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { Button, Icon } from '@openedx/paragon';
-import { Bookmark } from '@openedx/paragon/icons';
+import { Bookmark, Lock } from '@openedx/paragon/icons';
 
 import UnitIcon from './UnitIcon';
 import CompleteIcon from './CompleteIcon';
@@ -20,6 +20,7 @@ const UnitButton = ({
   unitId,
   className,
   showTitle,
+  isGated,
 }) => {
   const { courseId, sequenceId } = useSelector(state => state.courseware);
   const { pathname } = useLocation();
@@ -27,8 +28,26 @@ const UnitButton = ({
   const unitPath = pathname.startsWith('/preview') ? `/preview${basePath}` : basePath;
 
   const handleClick = useCallback(() => {
-    onClick(unitId);
-  }, [onClick, unitId]);
+    if (!isGated) {
+      onClick(unitId);
+    }
+  }, [onClick, unitId, isGated]);
+
+  // If unit is gated, show as locked and prevent navigation
+  if (isGated) {
+    return (
+      <Button
+        className={classNames('locked', className)}
+        variant="link"
+        onClick={handleClick}
+        title={title}
+        disabled
+      >
+        <Icon src={Lock} />
+        {showTitle && <span className="unit-title">{title}</span>}
+      </Button>
+    );
+  }
 
   return (
     <Button
@@ -63,6 +82,7 @@ UnitButton.propTypes = {
   complete: PropTypes.bool,
   contentType: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
+  isGated: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   showCompletion: PropTypes.bool,
   showTitle: PropTypes.bool,
@@ -77,6 +97,7 @@ UnitButton.defaultProps = {
   complete: false,
   showTitle: false,
   showCompletion: true,
+  isGated: false,
 };
 
 const mapStateToProps = (state, props) => {

@@ -16,15 +16,7 @@ const DetailedGrades = () => {
     org,
     tabs,
   } = useModel('courseHomeMeta', courseId);
-  const {
-    gradesFeatureIsFullyLocked,
-    gradesFeatureIsPartiallyLocked,
-    sectionScores,
-  } = useModel('progress', courseId);
-
-  const hasSectionScores = sectionScores.length > 0;
-  const emptyTableMsg = showUngradedAssignments()
-    ? messages.detailedGradesEmpty : messages.detailedGradesEmptyOnlyGraded;
+  const { gradesFeatureIsFullyLocked } = useModel('progress', courseId);
 
   const logOutlineLinkClick = () => {
     sendTrackEvent('edx.ui.lms.course_progress.detailed_grades.course_outline_link.clicked', {
