@@ -7,6 +7,7 @@ Factory.define('progressTabData')
     access_expiration: null,
     end: '3027-03-31T00:00:00Z',
     certificate_data: {},
+    has_active_certificate: true,
     completion_summary: {
       complete_count: 1,
       incomplete_count: 1,

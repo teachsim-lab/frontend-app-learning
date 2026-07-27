@@ -793,6 +793,7 @@ exports[`Data layer integration tests Test fetchProgressTab Should fetch, normal
             "pass": 0.75,
           },
         },
+        "hasActiveCertificate": true,
         "hasScheduledContent": false,
         "id": "course-v1:edX+DemoX+Demo_Course",
         "sectionScores": [
